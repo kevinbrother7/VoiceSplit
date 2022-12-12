@@ -73,6 +73,8 @@ def train(args, log_dir, checkpoint_path, trainloader, testloader, tensorboard, 
     #criterion = nn.L1Loss()
     if c.loss['loss_name'] == 'power_law_compression':
         criterion = PowerLaw_Compressed_Loss(power, complex_ratio)
+    elif c.loss['loss_name'] == 'MSE': 
+        criterion = nn.MSELoss()
     elif c.loss['loss_name'] == 'si_snr':
         criterion = SiSNR_With_Pit()
     else:
