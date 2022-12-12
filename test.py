@@ -66,6 +66,8 @@ def test(args, log_dir, checkpoint_path, testloader, tensorboard, c, model_name,
         criterion = PowerLaw_Compressed_Loss(power, complex_ratio)
     elif c.loss['loss_name'] == 'si_snr':
         criterion = SiSNR_With_Pit()
+    elif c.loss['loss_name'] == 'MSE':
+        criterion = nn.MSELoss()
     else:
         raise Exception(" The loss '"+c.loss['loss_name']+"' is not suported")
     return validation(criterion, ap, model, testloader, tensorboard, step,  cuda=cuda, loss_name=c.loss['loss_name'], test=True)
